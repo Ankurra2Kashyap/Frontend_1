@@ -1,0 +1,377 @@
+/* Account Container */
+.account-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f4f6f8;
+  font-family: Arial, sans-serif;
+}
+
+/* Top Bar */
+.top-bar {
+  background-color: #003366;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.top-bar-left h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+}
+
+.profile-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.profile-pic img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.username {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.logout-btn {
+  padding: 8px 16px;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #45a049;
+}
+
+/* Content Wrapper */
+.content-wrapper {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: white;
+  box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-section {
+  background-color: white;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+  width: 180px;
+  max-width: 100%;
+}
+
+.menu-section {
+  flex: 1;
+  background-color: white;
+  padding: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 15px 25px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f0f0;
+  color: #333;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.sidebar li:hover {
+  background-color: #f8f9fa;
+  color: #0055a5;
+}
+
+.sidebar li.active {
+  background-color: #0055a5;
+  color: white;
+  border-left: 4px solid #4CAF50;
+}
+
+.menu-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-link:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  padding: 30px;
+  overflow-y: auto;
+  background-color: #f4f6f8;
+}
+
+/* Account Overview */
+.account-overview {
+  background: linear-gradient(135deg, #0055a5, #003366);
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 30px;
+  color: white;
+  box-shadow: 0 4px 12px rgba(0, 85, 165, 0.2);
+}
+
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.profile-info h1 {
+  margin: 0 0 10px 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.profile-info .role {
+  font-size: 18px;
+  margin: 5px 0;
+  color: #e6f3ff;
+}
+
+.profile-info .department {
+  font-size: 16px;
+  margin: 5px 0 15px 0;
+  color: #ccddff;
+}
+
+.status-badge {
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Account Details */
+.account-details {
+  width: 100%;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 25px;
+}
+
+.details-card {
+  background: white;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.details-card:hover {
+  transform: translateY(-2px);
+}
+
+.details-card h3 {
+  margin: 0 0 20px 0;
+  color: #333;
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f8f9fa;
+}
+
+.detail-item:last-child {
+  border-bottom: none;
+}
+
+.detail-item label {
+  font-weight: 600;
+  color: #666;
+  font-size: 14px;
+}
+
+.detail-item span {
+  color: #333;
+  font-size: 14px;
+}
+
+.status-text.active {
+  color: #4CAF50;
+  font-weight: 600;
+}
+
+/* Permissions Card */
+.permissions-card {
+  grid-column: span 2;
+}
+
+.permissions-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.permission-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 3px solid #4CAF50;
+}
+
+.permission-icon {
+  color: #4CAF50;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.action-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+}
+
+.action-btn:not(.secondary) {
+  background-color: #0055a5;
+  color: white;
+}
+
+.action-btn:not(.secondary):hover {
+  background-color: #004494;
+  transform: translateY(-1px);
+  color: white;
+  text-decoration: none;
+}
+
+.action-btn.secondary {
+  background-color: #f8f9fa;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.action-btn.secondary:hover {
+  background-color: #e9ecef;
+  transform: translateY(-1px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+  
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .permissions-card {
+    grid-column: span 1;
+  }
+  
+  .permissions-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .account-overview {
+    padding: 20px;
+  }
+  
+  .profile-avatar img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .profile-info h1 {
+    font-size: 22px;
+  }
+  
+  .details-card {
+    padding: 20px;
+  }
+}

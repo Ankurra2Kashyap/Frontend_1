@@ -1,0 +1,48 @@
+/* --- THEME TOKENS (Standard Chartered vibe) --- */
+:root{
+    --sc-blue: #0055a5;
+    --sc-blue-600: #004b94;
+    --sc-green: #4caf50;
+    --sc-green-600: #45a049;
+    --sc-bg: #f8f9fa;
+    --sidebar-grad: linear-gradient(180deg, #083b75, #0055a5);
+  }
+  
+  /* Global base */
+  * { box-sizing: border-box; }
+  html, body, #root { height: 100%; }
+  body{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: var(--sc-bg);
+    color: #111;
+  }
+  
+  /* Buttons */
+  .btn-sc-blue{
+    background: var(--sc-blue);
+    border-color: var(--sc-blue);
+    color: #fff;
+  }
+  .btn-sc-blue:hover{ background: var(--sc-blue-600); border-color: var(--sc-blue-600); }
+  
+  .btn-outline-sc-blue{
+    color: var(--sc-blue);
+    border: 1px solid var(--sc-blue);
+    background: transparent;
+  }
+  .btn-outline-sc-blue:hover{
+    background: var(--sc-blue);
+    color: #fff;
+  }
+  
+  .btn-sc-green{
+    background: var(--sc-green);
+    border-color: var(--sc-green);
+    color: #fff;
+  }
+  .btn-sc-green:hover{ background: var(--sc-green-600); border-color: var(--sc-green-600); }
+  
+  /* Badges */
+  .bg-sc-blue { background: var(--sc-blue) !important; }
+  .bg-sc-green { background: var(--sc-green) !important; }

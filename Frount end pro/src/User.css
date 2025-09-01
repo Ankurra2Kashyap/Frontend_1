@@ -1,0 +1,68 @@
+/* Color variables */
+:root {
+    --brand-green: #18a84f;
+    --accent-blue: #0a58ca;
+    --panel-bg: #f5f6f8;
+    --border-soft: 1px solid #e9ecef;
+  }
+  
+  /* Top green banner  */
+  .top-banner {
+    background-color: var(--brand-green);
+    color: white;
+  }
+  
+  /* Logo size */
+  .logo-img {
+    height: 68px;
+    width: 178px;
+  }
+  
+  /* Search button color  */
+  .search-btn {
+    background-color: var(--accent-blue);
+    color: white;
+  }
+  
+  /* Logout button  */
+  .logout-btn {
+    background-color: var(--accent-blue);
+    color: white;
+  }
+  
+  /* Sidebar panel */
+  .sidebar-panel {
+    background-color: var(--panel-bg);
+    border: var(--border-soft);
+  }
+  
+  .search-btn {
+    background-color: var(--accent-blue);
+    color: white;
+}
+.logout-btn {
+    background-color: var(--accent-blue);
+    color: white;
+}
+/* Sidebar panel */
+.sidebar-panel {
+    background-color: var(--panel-bg);
+    border: var(--border-soft);
+}
+
+  /* Quick access buttons */
+  .quick-btn {
+    background-color: white;
+    text-align: left;
+    border: 1px solid #dee2e6;
+    width: 100%;
+    margin-bottom: 8px;
+  }
+  
+  /* Dashed placeholders  */
+  .placeholder-box {
+    border: 1px dashed #e9ecef;
+    color: #6c757d;
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }

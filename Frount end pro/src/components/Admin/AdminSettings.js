@@ -1,0 +1,101 @@
+import React from "react";
+import "./AdminSettingsUI.css";
+import logo from "../../Assests/sclogoshiva.png";
+import { Link } from "react-router-dom";
+
+export default function AdminSettingsUI() {
+    return (
+        <div className="settings-container">
+            {/* Top Bar */}
+            <header className="top-bar">
+                <div className="top-bar-left">
+                    <h2>Admin Settings – User Management</h2>
+                </div>
+                <div className="top-bar-right">
+                    <div className="profile-section">
+                        <div className="profile-pic">
+                            <img src="https://via.placeholder.com/40" alt="Profile" />
+                        </div>
+                        <span className="username">Admin User</span>
+                        <button className="logout-btn">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <div className="content-wrapper">
+                {/* Sidebar */}
+                <aside className="sidebar">
+                    <div className="logo-section">
+                        <img src={logo} alt="Standard Chartered" className="logo" />
+                    </div>
+                    <div className="menu-section">
+                        <ul>
+                            <li><Link to="/AdminDashboard" className="menu-link">Dashboard</Link></li>
+                            <li className="active">User Management</li>
+                            
+                            <li><Link to="/ReportAccess" className="menu-link">Report Access</Link></li>
+                            <li><Link to="/Admindashboardsettings" className="menu-link">Settings</Link></li>
+                            <li><Link to="/Adminaccount" className="menu-link">Account</Link></li>
+                            <li><Link to="/Adminhelp" className="menu-link">Help</Link></li>
+
+
+                        </ul>
+                    </div>
+                </aside>
+
+                {/* Main Content */}
+                <main className="main-content">
+                    <div className="card">
+                        <h2>Assign Users to Active Directory Groups</h2>
+                        <div className="form-grid">
+                            <select>
+                                <option>Select User</option>
+                                <option>John Smith</option>
+                                <option>Priya Sharma</option>
+                                <option>David Lee</option>
+                            </select>
+
+                            <select>
+                                <option>Select AD Group</option>
+                                <option>Wealth Compliance</option>
+                                <option>Wealth User Admin</option>
+                                <option>Global User Admin</option>
+                            </select>
+                        </div>
+                        <div className="form-actions">
+                            <button className="btn-primary">Assign Access</button>
+                        </div>
+                    </div>
+
+                    <div className="card">
+                        <h2>Existing User Access</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>User Name</th>
+                                    <th>AD Group</th>
+                                    <th>Access Folder</th>
+                                    <th>Reports</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Smith</td>
+                                    <td>Wealth Compliance</td>
+                                    <td>Compliance</td>
+                                    <td>KYC Reports, AML Reports</td>
+                                </tr>
+                                <tr>
+                                    <td>Priya Sharma</td>
+                                    <td>Wealth User Admin</td>
+                                    <td>Global User</td>
+                                    <td>Active User, Inactive User</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+    );
+}

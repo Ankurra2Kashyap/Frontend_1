@@ -1,0 +1,72 @@
+/* src/index.css */
+:root{
+  --brand-green:#18a84f;        /* primary */
+  --brand-green-dark:#18a84f;   /* darker shade */
+  --brand-green-verylight:#e9f6ef;
+  --brand-accent:#f7b500;       /* subtle accent */
+  --text-dark:#1b1f24;
+  --muted:#6c757d;
+}
+
+html, body, #root { height: 100%; }
+body { background:#f7f9fb; color: var(--text-dark); }
+
+.topbar {
+  background: linear-gradient(90deg, var(--brand-green-dark), var(--brand-green));
+  color:#fff;
+  padding: .6rem 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+}
+
+.topbar .brand {
+  display:flex; align-items:center; gap:.6rem; font-weight:600;
+}
+.topbar img { height:32px; }
+
+.topnav a {
+  color:#dff5e7; text-decoration:none; padding:.35rem .7rem; border-radius:.4rem;
+  font-weight:500;
+}
+.topnav a.active, .topnav a:hover { background:rgba(255,255,255,.12); color:#fff; }
+
+.user-actions .btn { padding:.25rem .6rem; }
+
+.app-shell { height: calc(100% - 60px); } /* minus topbar */
+.sidebar {
+  background: var(--brand-green-verylight);
+  border-right:1px solid #d7e6dd;
+  min-height:100%;
+  padding:1rem .75rem;
+}
+.sidebar h6 { color:var(--brand-green-dark); font-weight:700; margin-bottom:.6rem; }
+.sidebar .list-group-item { border:none; background:transparent; padding:.35rem .25rem; }
+.sidebar .list-group-item:hover { background:#fff; border-radius:.5rem; }
+
+.badge-soft {
+  background: #fff; color: var(--brand-green-dark); border:1px solid #d7e6dd;
+}
+
+.content {
+  padding:1rem 1.25rem;
+}
+
+.card {
+  border:1px solid #e7eef0; box-shadow:0 1px 3px rgba(0,0,0,.05);
+  border-radius: .8rem;
+}
+
+.table thead th {
+  background:#f3f8f5;
+  color:#2a3b32;
+  border-bottom:1px solid #d7e6dd !important;
+}
+.table tbody tr:hover { background:#fbfdfa; }
+
+.filter-bar .form-select, .filter-bar .form-control {
+  height: 38px;
+}
+
+.btn-green { background: var(--brand-green); color:#fff; border:none; }
+.btn-green:hover { background: var(--brand-green-dark); color:#fff; }
+
+.small-muted { color: var(--muted); font-size:.9rem; }
