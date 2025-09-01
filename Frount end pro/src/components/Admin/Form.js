@@ -1,25 +1,83 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Form.css';
-import { useState } from 'react';
-import Details from './Details';
 import { Link } from "react-router-dom";
+import axios from "axios";
 import logo from "../../Assests/sclogoshiva.png";
 
-const Form = ({ data, setData }) => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [label, setLabel] = useState('');
-    const [drop, setDrop] = useState('');
+const Form = ({ users, setUsers }) => {
+    const [selectedEmail, setSelectedEmail] = useState("");
+    const [selectedName, setSelectedName] = useState("");
+    const [label, setLabel] = useState("");
+    const [drop, setDrop] = useState("");
+
+    // Fetch users from backend
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/user-management")
+            .then(res => setUsers(res.data))
+            .catch(err => console.error(err));
+    }, [setUsers]);
+
+    // Sync email dropdown when name is selected
+    const handleNameChange = (e) => {
+        const name = e.target.value;
+        setSelectedName(name);
+
+        const user = users.find(
+            u => `${u.firstname} ${u.lastname}` === name
+        );
+        if (user) {
+            setSelectedEmail(user.email);
+        } else {
+            setSelectedEmail("");
+        }
+    };
+
+    // Sync name dropdown when email is selected
+    const handleEmailChange = (e) => {
+        const email = e.target.value;
+        setSelectedEmail(email);
+
+        const user = users.find(u => u.email === email);
+        if (user) {
+            setSelectedName(user.firstname + " " + user.lastname);
+        } else {
+            setSelectedName("");
+        }
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setData([...data, { name, email, status: label, adGroup: drop }]);
-        setName('');
-        setEmail('');
-        setLabel('');
-        setDrop('');
-        alert('Data Added Successfully');
-    }
+
+        if (!selectedEmail) {
+            alert("Please select a user!");
+            return;
+        }
+
+        axios.put(`http://localhost:8080/api/user-management/email/${selectedEmail}`, {
+            status: label,
+            department: drop   // maps to adGroup
+        })
+        .then(() => {
+            alert("User updated successfully!");
+
+            // ✅ Update local state so Details.js shows updated info instantly
+            const updatedUsers = users.map(user =>
+                user.email === selectedEmail
+                    ? { ...user, status: label, department: drop }
+                    : user
+            );
+            setUsers(updatedUsers);
+
+            setSelectedEmail("");
+            setSelectedName("");
+            setLabel("");
+            setDrop("");
+        })
+        .catch(err => {
+            console.error(err);
+            alert("Failed to update user.");
+        });
+    };
 
     return (
         <div className="form-container">
@@ -49,7 +107,6 @@ const Form = ({ data, setData }) => {
                         <ul>
                             <li><Link to="/Admindashboard" className="menu-link">Dashboard</Link></li>
                             <li className="active">User Management</li>
-                            
                             <li><Link to="/ReportAccess" className="menu-link">Report Access</Link></li>
                             <li><Link to="/Admindashboardsettings" className="menu-link">Settings</Link></li>
                             <li><Link to="/Adminaccount" className="menu-link">Account</Link></li>
@@ -61,42 +118,53 @@ const Form = ({ data, setData }) => {
                 {/* Main Content */}
                 <main className="main-content">
                     <div className="action-buttons">
-                        
                         <Link to="/details" className="details-link">View Details</Link>
                     </div>
 
                     <div className="form-card">
                         <form className="custom-form" onSubmit={handleSubmit}>
-                            <h2 className="form-title">Add User</h2>
+                            <h2 className="form-title">Update User</h2>
 
-                            {/* Name */}
+                            {/* Name Dropdown */}
                             <div className="form-group">
-                                <label htmlFor="nameInput">Name</label>
-                                <input
-                                    type="text"
+                                <label>Select Name</label>
+                                <select
                                     className="form-control"
-                                    id="nameInput"
-                                    placeholder="Enter full name"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={selectedName}
+                                    onChange={handleNameChange}
                                     required
-                                />
+                                >
+                                    <option value="">-- Select Name --</option>
+                                    {users.map(user => (
+                                        <option
+                                            key={user.email}
+                                            value={`${user.firstname} ${user.lastname}`}
+                                        >
+                                            {user.firstname} {user.lastname}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
-                            {/* Email */}
+                            {/* Email Dropdown */}
                             <div className="form-group">
-                                <label htmlFor="emailInput">Email Address</label>
-                                <input
-                                    type="email"
+                                <label>Select Email</label>
+                                <select
                                     className="form-control"
-                                    id="emailInput"
-                                    placeholder="Enter email"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={selectedEmail}
+                                    onChange={handleEmailChange}
                                     required
-                                />
+                                >
+                                    <option value="">-- Select Email --</option>
+                                    {users.map(user => (
+                                        <option key={user.email} value={user.email}>
+                                            {user.email}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
 
+                            {/* Status */}
                             <div className="form-group">
                                 <label>Status</label>
                                 <div className="status-options">
@@ -125,9 +193,16 @@ const Form = ({ data, setData }) => {
                                 </div>
                             </div>
 
+                            {/* AD Group */}
                             <div className="form-group">
                                 <label htmlFor="adGroup">AD Group</label>
-                                <select className="form-control" id="adGroup" value={drop} onChange={(e) => setDrop(e.target.value)} required>
+                                <select
+                                    className="form-control"
+                                    id="adGroup"
+                                    value={drop}
+                                    onChange={(e) => setDrop(e.target.value)}
+                                    required
+                                >
                                     <option value="">-- Select AD Group --</option>
                                     <option value="wealth-compliance">Wealth Compliance</option>
                                     <option value="wealth-user-admin">Wealth User Admin</option>
@@ -136,7 +211,7 @@ const Form = ({ data, setData }) => {
                             </div>
 
                             {/* Submit Button */}
-                            <button type="submit" className="btn-submit">Submit</button>
+                            <button type="submit" className="btn-submit">Update</button>
                         </form>
                     </div>
                 </main>
